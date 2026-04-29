@@ -300,6 +300,19 @@ let currentUser = "";
 let selectedFile = null;
 let lastSend = 0;
 
+  let captcha = "";
+
+function generateCaptcha() {
+  const chars = "ABCDEFGHJKLMNP123456789";
+  captcha = "";
+
+  for (let i = 0; i < 5; i++) {
+    captcha += chars[Math.floor(Math.random() * chars.length)];
+  }
+
+  document.getElementById("captchaText").innerText = "Captcha: " + captcha;
+}
+
 // LOGIN
 function login() {
   let u = document.getElementById("user").value;
@@ -325,6 +338,8 @@ function login() {
 function showRegister() {
   document.getElementById("loginPage").style.display = "none";
   document.getElementById("registerPage").style.display = "flex";
+
+  generateCaptcha(); // 🔥 INI WAJIB
 }
 
 async function kirimAkun() {
